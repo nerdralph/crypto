@@ -23,6 +23,8 @@ const (
 type state struct {
 	// Generic sponge components.
 	a    [25]uint64 // main state of the hash
+    // storage will be uint64 aligned when placed after a [25]uint64
+	storage [maxRate]byte
 	buf  []byte     // points into storage
 	rate int        // the number of bytes of state to use
 
@@ -39,7 +41,6 @@ type state struct {
 	//     "Draft FIPS 202: SHA-3 Standard: Permutation-Based Hash and
 	//      Extendable-Output Functions (May 2014)"
 	dsbyte  byte
-	storage [maxRate]byte
 
 	// Specific to SHA-3 and SHAKE.
 	outputLen int             // the default output size in bytes
